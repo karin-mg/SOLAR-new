@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/karin-mg/SOLAR#readme",
   "devDependencies": {
+    "@fancyapps/fancybox": "^3.3.5",
     "browser-sync": "^2.24.6",
     "del": "^3.0.0",
-    "fancybox": "^3.0.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-cache": "^1.0.2",
@@ -31,9 +31,7 @@
     "gulp-uglifyjs": "^0.6.2",
     "imagemin-pngquant": "^6.0.0",
     "jquery": "^3.3.1",
-    "magnific-popup": "^1.1.0"
-  },
-  "dependencies": {
+    "normalize.css": "^8.0.0",
     "slick-carousel": "^1.8.1"
   }
 }
