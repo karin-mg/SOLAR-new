@@ -1,0 +1,53 @@
+.people-carousel {
+	margin: 45px auto 0;
+	width: 310px;
+
+	&__item {
+	width: 45px !important;
+	height: 45px;
+	text-align: center  !important;
+	display: block !important;
+	border-radius: 50%;
+	background-position: center;
+	background-size: cover;
+	transition: .3s;
+	}
+
+	.slick-current  {
+		transform: scale(1.665);
+	}
+	
+	.slick-track {
+		padding-top: 20px;
+	}
+	
+	.slick-slide {
+		margin: 0 8px;
+	}
+	
+	.slick-arrow {
+		position: absolute;
+		top: 50%;
+		width: 20px;
+		height: 20px;
+		transform: translateY(-50%);
+		background-color: transparent;
+		font-size: 0;
+		border: 0;
+		background-position: center;
+		background-size: contain;
+	}
+	
+	.slick-prev {
+		left: -40px;
+		background-image: url('../img/icon/prev.png');
+	}
+	
+	.slick-next {
+		right: -40px;
+		background-image: url('../img/icon/next.png');
+	}
+
+}
+
+

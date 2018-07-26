@@ -9,17 +9,11 @@ var gulp         = require('gulp'), // Подключаем Gulp
 	imagemin     = require('gulp-imagemin'), // Подключаем библиотеку для работы с изображениями
 	pngquant     = require('imagemin-pngquant'), // Подключаем библиотеку для работы с png
 	cache        = require('gulp-cache'), // Подключаем библиотеку кеширования
-	autoprefixer = require('gulp-autoprefixer');// Подключаем библиотеку для автоматического добавления префиксов
+	autoprefixer = require('gulp-autoprefixer'),// Подключаем библиотеку для автоматического добавления префиксов
+	svgmin       = require('gulp-svgmin'),
+	svgstore     = require('gulp-svgstore');
 
 gulp.task('concat', ['vendor_css', 'vendor_js']);
-
-gulp.task('sass', function(){ // Создаем таск Sass
-	return gulp.src('app/sass/**/mainstyle.scss') // Берем источник
-		.pipe(sass()) // Преобразуем Sass в CSS посредством gulp-sass
-		.pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true })) // Создаем префиксы
-		.pipe(gulp.dest('app/css')) // Выгружаем результата в папку app/css
-		.pipe(browserSync.reload({stream: true})) // Обновляем CSS на странице при изменении
-});
 
 gulp.task('browser-sync', function() { // Создаем таск browser-sync
 	browserSync({ // Выполняем browserSync
@@ -30,13 +24,36 @@ gulp.task('browser-sync', function() { // Создаем таск browser-sync
 	});
 });
 
+// gulp.task('sass', function(){ // Создаем таск Sass
+// 	return gulp.src('app/sсss/**/mainstyle.scss') // Берем источник
+// 		.pipe(sass()) // Преобразуем Sass в CSS посредством gulp-sass
+// 		.pipe(autoprefixer(['last 10 versions', 'ie 9'], {cascade: true})) // Создаем префиксы
+// 		.pipe(gulp.dest('app/css')) // Выгружаем результата в папку app/css
+// 		.pipe(browserSync.reload({stream: true})) // Обновляем CSS на странице при изменении
+// });
+
+gulp.task('sass', function(){ // Создаем таск Sass
+	return gulp.src('app/scss/**/mainstyle.scss') // Берем источник
+		.pipe(sass()) // Преобразуем Sass в CSS посредством gulp-sass
+		.pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true })) // Создаем префиксы
+		.pipe(gulp.dest('app/css')) // Выгружаем результата в папку app/css
+		.pipe(browserSync.reload({stream: true})) // Обновляем CSS на странице при изменении
+});
+
+gulp.task('watch', ['browser-sync'], function() {
+	gulp.watch('app/scss/**/*.scss', ['sass']); // Наблюдение за scss файлами в папке sass
+	gulp.watch('app/*.html', browserSync.reload); // Наблюдение за HTML файлами в корне проекта
+	gulp.watch('app/js/**/*.js', browserSync.reload);   // Наблюдение за JS файлами в папке js
+	gulp.watch('app/css/**/*.css', browserSync.reload);
+});
+
 gulp.task('vendor_js', function() {
 	return gulp.src([ // Берем все необходимые библиотеки
 		'node_modules/jquery/dist/jquery.js',
 		'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js',
 		'node_modules/slick-carousel/slick/slick.js'
 		])
-		.pipe(concat('vendor_js.js')) // Собираем их в кучу в новом файле libs.min.js
+		.pipe(concat('vendor_js.js')) // Собираем их в кучу в новом файле vendor_js.js
 		.pipe(uglify()) // Сжимаем JS файл
 		.pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
 		.pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
@@ -54,11 +71,20 @@ gulp.task('vendor_css', ['sass'], function() {
 		.pipe(gulp.dest('app/css')); // Выгружаем в папку app/css
 });
 
-gulp.task('watch', ['browser-sync'], function() {
-	gulp.watch('app/sass/**/*.scss', ['sass']); // Наблюдение за scss файлами в папке sass
-	gulp.watch('app/*.html', browserSync.reload); // Наблюдение за HTML файлами в корне проекта
-	gulp.watch('app/js/**/*.js', browserSync.reload);   // Наблюдение за JS файлами в папке js
-	gulp.watch('app/css/mainstyle.css', browserSync.reload);
+// SVG min.
+gulp.task('svgmin', function () {
+    return gulp.src('app/img/svg/**/*')
+        .pipe(svgmin())
+        .pipe(gulp.dest('app/img/svg'));
+});
+
+// SVG sprite
+gulp.task('svgstore', function () {
+    return gulp.src('app/img/svg/sprite/*.svg')
+        .pipe(svgmin())
+        .pipe(svgstore())
+        .pipe(rename({basename: 'sprite'}))
+        .pipe(gulp.dest('app/img'));
 });
 
 gulp.task('clean', function() {

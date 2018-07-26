@@ -1,0 +1,25 @@
+.last-section {
+	background-blend-mode: multiply;
+    background-image: url(../img/footer.jpg);
+    background-color: #005083;
+	background-size: cover;
+	width: 100%;
+	min-height: 460px;
+	margin-top: 60px;
+}
+
+.footer
+{
+	padding: 120px 0;
+	color: white;
+	line-height: 1.7;
+	font-size: 14px;
+
+	&__address {
+		width: 170px;
+	}
+	
+	&__text {
+		width: 470px;
+	}
+}

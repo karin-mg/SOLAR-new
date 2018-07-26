@@ -1,0 +1,199 @@
+@import 'mixins.scss';
+@import 'typo.scss';
+@import 'grid.scss';
+@import 'carousels.scss';
+@import 'footer.scss';
+@import 'header.scss';
+@import 'modal-window.scss';
+
+body {
+	font-family: 'Roboto';
+	margin: 0;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.btn {
+	height: 46px;
+	line-height: 46px;
+	width: 200px;
+	display:inline-block;
+	text-align: center;
+	text-decoration: none;
+	background-color: #00b564;
+	color: white;
+	font-size: 16px;
+	border:0;
+}
+
+.main-title-wrapper {
+	width: 90%;
+	max-width: 880px;
+	margin: 0 auto;
+}
+
+.lead_lbl {
+	margin: 190px 0 0;
+	font-size: 54px;
+	text-align: center;
+	font-weight: 400;
+}
+
+.section-title h2 {
+	font-size: 36px;
+	font-weight: 400;
+	margin: 0;
+}
+
+.about-img {
+	background-blend-mode: multiply;
+    background-image: linear-gradient(to right, #005083, #22b972), url(../img/about.jpg);
+	background-size: cover;
+	display: inline-block;
+	min-width: calc(100% - 50px);;
+	min-height: 380px;
+	background-position: 50%;
+}
+
+.info-block {
+	margin: 40px 50px;
+
+	&__text {
+		color: grey;
+		font-size: 18px;
+		margin: 50px 0 40px;
+		line-height: 1.7;
+		white-space: normal;
+	}
+}
+
+.service {
+	text-align: center;
+
+	&--regular {
+		margin-bottom: 80px;
+		text-align: center;
+	}
+
+	&__icon {
+		height: 60px;
+			svg {
+				height: 57px;
+			}	
+	}
+
+	&__title {
+		font-weight: 700;
+		font-size: 18px;
+		margin-top: 20px;
+	}
+
+	&__text {
+		line-height: 1.7;
+		opacity: 0.7;
+		margin: 0;
+	}
+}
+
+.gallery {
+	margin: 60px 0;
+
+	&__img {
+		float: left;
+		width: 100%;
+		padding-bottom: 100%;
+		background-position: 50%;
+		background-size: cover;
+	}
+}
+
+.section--review{
+	text-align: center;
+	background: linear-gradient(to right, #005083, #22b972);
+	padding: 95px 0; 
+}
+
+.review {
+	color: white;
+    max-width: 770px;
+
+    &__text {
+   		margin: 0;
+		padding: 45px 0;
+		line-height: 2;
+	}
+}
+
+.person__name {
+   	font-size: 14px;
+	line-height: 2;
+	text-transform: uppercase;
+}
+
+.person__post {
+   	font-size: 13px;
+   	font-weight: 300;
+	line-height: 2;
+	text-transform: uppercase;
+}
+
+.section-title__contact {
+	text-align: center;
+	padding-bottom: 75px;
+}
+
+.address_title {
+	font-size: 18px;
+	margin-bottom: 5px;
+	color: inherit;
+}
+
+.address_text {
+	font-size: 14px;
+	margin-top: 40px;
+	color: #b0afb3;
+	line-height: 3;
+}
+
+.contact {
+	padding: 0 30px 0 100px;
+
+	&__map {
+		padding-top: 20px;
+	}
+}
+
+.form {
+	max-width: 400px;
+	padding: 25px 0 0 30px;
+
+		&-group {
+		margin: 15px 0;
+		color: #b0afb3;
+		font-size: 14px;
+	
+		&__input {
+			padding: 10px 30px;
+			width: 100%;
+		}
+	
+		&__textarea {
+			padding: 10px 30px;
+			height: 115px;
+			width: 100%;
+		}
+	
+		&__btn {
+			text-align: center;
+			margin-top: 95px;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.col-50 {
+		width: 50%;
+	}
+}
